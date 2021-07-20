@@ -1,15 +1,13 @@
-<div class="navbar flex justify-between shadow-sm mb-4">
+<div class="navbar flex justify-between shadow-sm mb-2">
   <div class="logo">
     <img src="<%= image_path("logo.png") %>" alt="logo" class="w-48">
   </div>
 
   <div class="navbar-content flex m-1 content-center">
-  <%# navbar-content %>
     <% if user_signed_in? %>
-
       <div class="flex items-center"><%= link_to "Home", "#", class: "font-sans px-2"  %></div>
       <div class="flex items-center"><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "font-sans px-2" %></div>
-      <div class="px-2"><%= image_tag "https://i.pinimg.com/564x/51/07/75/510775920002ed607ff0a5582932214a.jpg", class: "w-8 h-8 rounded-full border-gray-400" %></div>
+      <div class="px-"><%= image_tag "https://i.pinimg.com/564x/51/07/75/510775920002ed607ff0a5582932214a.jpg", class: "w-8 h-8 rounded-full border-gray-400" %></div>
 
     <% else %>
       <div><%= link_to "Login", new_user_session_path, class: "nav-link" %></div>
