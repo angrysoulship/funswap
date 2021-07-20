@@ -1,1 +1,14 @@
-<%= @collection.name %>
+
+
+<h1><%= @collection.name %></h1>
+
+
+
+<% @collection.items.each do |item| %>
+  <div >
+    <%= link_to item_path(item) do %>
+        <h1><%= item.name %></h1>
+        
+      <% end %>
+  </div>
+<% end %>
