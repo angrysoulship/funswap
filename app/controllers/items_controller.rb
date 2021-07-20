@@ -11,7 +11,6 @@ class ItemsController < ApplicationController
     @collection = Collection.find(params[:collection_id])
     @item.collection = @collection
     @item.save
-    raise
     authorize @item
   end
 
