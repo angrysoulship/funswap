@@ -1,0 +1,30 @@
+<h1>hiii</h1>
+
+
+<div class="w-full grid">
+  <div class="w-1/3 justify-self-center">
+  <h1 class="text-2xl font-bold text-green-500 mb-5">new item</h1>
+  <%= simple_form_for([@collection, @item]) do |f| %>
+  <div>
+    <%= f.input :name %>
+  </div>
+  <div>
+    <%= f.input :species %>
+  </div>
+  <div>
+    <%= f.input :description %>
+  </div>
+  <div>
+    <%= f.input :img_url %>
+  </div>
+  <div>
+    <%= f.input :price %>
+  </div>
+
+    
+
+  <div></div>
+    <%= f.button :submit %>
+  <% end %> 
+  </div>
+</div>
