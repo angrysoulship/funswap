@@ -1,7 +1,6 @@
 
 <%= simple_form_for [ @item ] do |f| %>
         <%= "You sure want to buy this item?" %>
-        <%= @item.collection.user.id = @current_user.id %>
         <%= f.button :submit %>
-        <%= link_to 'Back', lists_path %>
+        <%= link_to 'Back', item_path(@item) %>
 <% end %>
