@@ -5,11 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Item.destroy_all
 
-Collection.destroy_all
 
-Collection.create(name: "Young Pokemons!", user_id: 1)
-Collection.create(name: "Grown-ups!", user_id: 1)
+# Collection.create(name: "Young Pokemons!", user_id: 1)
+# Collection.create(name: "Grown-ups!", user_id: 1)
 
 Item.create!(name: "Psyduck", species: "Water", description: "Psyduck is constantly beset by headaches. If the Pokémon lets its strange power erupt, apparently the pain subsides for a while.", price: "9999.8", collection_id: "1", img_url: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/054.png')
 
