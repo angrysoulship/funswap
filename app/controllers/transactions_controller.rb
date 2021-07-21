@@ -12,6 +12,13 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new(transaction_params)
     @item = Item.find(params[:item_id])
     @transaction.item = @item
+    @transaction.seller_id = @transaction.item.collection.user.id
+    @transaction.buyer_id = current_user.id
+    seller = User.find(@transaction.seller_id)
+    seller.balance += @transaction.item.price
+    buyer = User.find(@transaction.buyer_id)
+    buyer.balance -= @transaction.item.price
+
     authorize @transaction
     if @transaction.save
 
