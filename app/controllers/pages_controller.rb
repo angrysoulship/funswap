@@ -3,6 +3,7 @@ class PagesController < ApplicationController
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def home
+    @collections = policy_scope(Collection)
 
   end
 
