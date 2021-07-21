@@ -1,6 +1,64 @@
-<h1 class="text-gray-600 font-bold text-xl">My Collections</h1>
+<div class="container flex justify-between w-screen mx-0 pl-0">
 
-<% @collections.each do |collection|%>
-  <div class="text-2xl text-gray-800 w-4/5 "><%=link_to collection.name, collection_path(collection) %></div>
-<% end %>
+  <div class="profile-box shadow-sm flex flex-col content-center font-sans w-1/6 bg-gray-100">
+    <div class="flex flex-col m-auto">
+      <div class="py-4">
+        <%= image_tag "https://i.pinimg.com/564x/51/07/75/510775920002ed607ff0a5582932214a.jpg", class: "w-24 h-24 rounded-full border-gray-400" %>
+      </div class="">
+      <div class="text-base font-bold text-gray-600 text-center py-4">Ketchum</div>
+      <div class="text-base font-bold text-gray-600 text-center pt-6">$ 6669.30</div>
+      <div class=" text-sm text-gray-400 text-center">BALANCE</div>
+      <div class="text-base font-bold text-gray-600 text-center pt-6">5</div>
+      <div class="text-sm text-gray-400 text-center">ITEM</div>
+      <div class="text-base font-bold text-gray-600 text-center pt-6">2</div>
+      <div class="text-sm text-gray-400 text-center">transaction</div>
+      <div class="pt-8">
+        <%= link_to "Create", new_collection_item_path(1), class: "bg-green-500 hover:bg-green-700 rounded-xl shadow-xl font-medium text-white px-4 py-2" %>
+      </div>
+    </div>
 
+  </div>
+
+  <div class="show-box w-5/6 pl-4">
+    <div class="items mt-4">
+      <div class="text-gray-500 font-bold text-xl mx-4">Check out all your items</div>
+
+      <div class="item-cards grid grid-cols-3 gap-4 px-4 justify-items-center">
+        <% @collections.first.items.each do |item|%>
+        <div>
+          <%= link_to item_path(item), style:"text-decoration: none; color: inherit;" do %>
+          <div class="card relative w-64 h-80 bg-white rounded-2xl m-2 font-sans">
+            <div class="favourite-btn absolute top-3 right-3">
+              <p>&hearts;<p>
+            </div>
+            <div class="item w-full flex flex-col justify-between content-between h-full m-auto">
+              <div class="item-image w-44 h-44 justify-self-center m-auto">
+                <img class="object-cover w-full h-full rounded" src="<%= item.img_url %>" alt="">
+              </div>
+
+              <div class="item-info flex justify-between mx-4 text-sm">
+                <div class="id bg-green-500 text-white text-xs rounded-xl px-3 h-4">#434<%= item.id %></div>
+                <div class="name flex flex-col ">
+                  <div>NAME <%= item.name %></div>
+                  <div>TYPE <%= item.species %></div>
+                </div>
+              </div>
+
+              <div class="item-record flex justify-around h-8 mx-3 my-2">
+                <div class="text-sm text-gray-400">2 hours ago</div>
+                <div class="">$<%= item.price %></div>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="transactions">
+      <div class="text-gray-500 font-bold text-xl mx-4">Transaction History</div>
+    </div>
+  </div>
+
+</div>
