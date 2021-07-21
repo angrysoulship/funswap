@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+Item.destroy_all
 Collection.destroy_all
 
 Collection.create(name: "Young Pokemons!", user_id: 1)
