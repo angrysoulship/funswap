@@ -1,7 +1,7 @@
 <div>
   <div class="navbar flex justify-between shadow-sm mb-2r">
-  <div class="logo">
-    <img src="<%= image_path("logo.png") %>" alt="logo" class="w-48">
+  <div class="logo w-48">
+    <%= link_to image_tag("logo.png"), root_path, class: "font-sans px-2", style:"text-decoration: none; color: inherit;" %>
   </div>
 
   <div class="navbar-content flex m-1 content-center">
