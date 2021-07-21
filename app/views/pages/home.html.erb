@@ -27,6 +27,7 @@
             <div>NAME <%= item.name %></div>
             <div>TYPE <%= item.species %></div>
           </div>
+
         </div>
 
         <div class="item-record flex justify-around h-8 mx-3 my-2">
@@ -34,6 +35,7 @@
           <div class="">$<%= item.price %></div>
         </div>
       </div>
+
 
     </div>
       <% end %>
@@ -48,5 +50,3 @@
 
 <%= link_to "add a new collection",  new_collection_path %>
 <%= link_to "my collection",  collections_path %>
-
-
