@@ -18,7 +18,8 @@
             <p>&hearts;<p>
           </div>
           <div class="item w-full flex flex-col justify-between content-between h-full m-auto">
-            <div class="item-image w-44 h-44 justify-self-center m-auto">image </div>
+            <div class="item-image w-44 h-44 justify-self-center m-auto"><img class="w-full md:w-72 block rounded" src= <%= item.img_url%> alt="" /></div>
+
 
             <div class="item-info flex justify-between mx-4 text-sm">
               <div class="id bg-green-500 text-white rounded-xl px-3 h-5">#434</div>
@@ -46,5 +47,3 @@
 
 <%= link_to "add a new collection",  new_collection_path %>
 <%= link_to "my collection",  collections_path %>
-
-
