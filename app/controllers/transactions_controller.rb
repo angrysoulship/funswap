@@ -23,26 +23,23 @@ class TransactionsController < ApplicationController
 
     @item.collection_id = current_user.collections[0].id
 
-    raise
+
 
     # @seller = User.find(@seller_collection.user_id)
     # @buyer = User.find(@buyer_id)
 
-    @transaction.seller_id = @transaction.item.collection_id.user.id
-    @transaction.buyer_id = current_user.id
-    # seller = User.find(@transaction.seller_id)
-    # seller.balance += @transaction.item.price
-    # buyer = User.find(@transaction.buyer_id)
-    # buyer.balance -= @transaction.item.price
+    @seller_id = @transaction.item.collection.user.id
+    # @transaction.buyer_id = current_user.id
+    @seller = User.find(@seller_id)
 
+    @seller.balance.amount += @transaction.item.price
+
+    @buyer = current_user
+    @buyer.balance.amount -= @transaction.item.price
+    @transaction.save
     authorize @transaction
-    if @transaction.save
+    redirect_to item_path(@item)
 
-      redirect_to item_path(@item)
-
-    else
-      render 'new'
-    end
   end
 
 private

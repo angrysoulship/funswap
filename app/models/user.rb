@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_many :collections, dependent: :destroy
 
+  has_one :balance, dependent: :destroy
+
   # validates :name, presence: true, uniqueness: true
 
 end

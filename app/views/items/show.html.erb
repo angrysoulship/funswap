@@ -1,6 +1,6 @@
 <div class=" relative w-screen h-screen flex justify-center">
   <div class="absolute top-14 left-20 font-sans text-gray-600 font-medium">
-  <%= link_to "< Back ", collections_path%>
+  <%= link_to "< Back ", collection_path(@item.collection_id)%>
   </div>
   <div class="card w-4/6 h-5/6 shadow-lg self-center justify-center">
 
@@ -27,9 +27,18 @@
           <div class="price w-32 h-10 bg-white flex">
             <p class="self-center text-gray-700 text-xl">$ <%= @item.price %></p>
           </div>
-          <div class="action w-32 h-10 bg-green-500 rounded-xl flex justify-center">
-            <p class="self-center text-white text-lg">Buy </p>
-          </div>
+
+
+          <% @collection = Collection.find(@item.collection_id) %>
+          <% if @collection.user_id == current_user.id %>
+            <div>
+            </div>
+          <% else %>
+            <div class="pt-8">
+            <%= link_to "Buy", new_collection_item_transaction_path(@item.collection_id, @item.id), class: "bg-green-500 hover:bg-green-700 rounded-xl shadow-xl font-medium text-white px-4 py-2" %>
+            </div>
+          <% end %>
+
         </div>
 
         <div class="date content-end text-gray-400 mt-2">
@@ -56,13 +65,18 @@
           <p><%= @item.description %></p>
         </div>
 
-        <div class="text-gray-700">
-           <%= link_to "Edit", edit_item_path(@item)%>
-        </div>
+        <% @collection = Collection.find(@item.collection_id) %>
+        <% if @collection.user_id == current_user.id %>
+          <div class="text-gray-700">
+            <%= link_to "Edit", edit_item_path(@item)%>
+          </div>
 
-        <div class="text-gray-700">
-           <%= link_to "Delete", item_path(@item), method: :delete %>
-        </div>
+          <div class="text-gray-700">
+            <%= link_to "Delete", item_path(@item), method: :delete %>
+          </div>
+        <% else %>
+          <div></div>
+        <% end %>
 
       </div>
     </div>
