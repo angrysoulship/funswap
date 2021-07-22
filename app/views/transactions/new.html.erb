@@ -1,6 +1,11 @@
 
-<%= simple_form_for [ @item ] do |f| %>
-        <%= "You sure want to buy this item?" %>
-        <%= f.button :submit %>
-        <%= link_to 'Back', item_path(@item) %>
-<% end %>
+
+<div class="relative w-full grid">
+  <div class="absolute top-14 left-20 font-sans text-gray-600 font-medium">
+    <%= link_to "< Back ", collections_path%>
+  <div>
+
+  <div>
+    <%= link_to " Buy > ",  collection_item_transactions_path(@collection_id, @item), method: :post %>
+  </div>
+<div>

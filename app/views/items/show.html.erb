@@ -28,10 +28,10 @@
             <p class="self-center text-gray-700 text-xl">$ <%= @item.price %></p>
           </div>
           <div class="action w-32 h-10 bg-green-500 rounded-xl flex justify-center">
-            <p class="self-center text-white text-lg">Buy</p>
+            <p class="self-center text-white text-lg">Buy </p>
           </div>
         </div>
-      
+
         <div class="date content-end text-gray-400 mt-2">
           <p>1 day ago</p>
         </div>
@@ -61,7 +61,7 @@
         </div>
 
         <div class="text-gray-700">
-           <%= link_to "Delete", item_path(@item), method: :delete %>  
+           <%= link_to "Delete", item_path(@item), method: :delete %>
         </div>
 
       </div>
@@ -69,4 +69,3 @@
   </div>
 
  </div>
-
