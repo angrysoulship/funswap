@@ -33,7 +33,7 @@
       <%# cards %>
       <div class="list-cards grid grid-cols-4 gap-4 p-10">
 
-        <% Collection.all.each do |collection| %>
+        <% current_user.collections.each do |collection| %>
           <div class="grid">
             <%= link_to collection_path(collection) do%>
               <div class="list-card relative flex align-between justify-self-center bg-gradient-to-br from-green-400 to-green-500 hover:bg-green-700 w-52 h-52 rounded-3xl">
