@@ -7,7 +7,7 @@
         <%= image_tag "https://i.pinimg.com/564x/51/07/75/510775920002ed607ff0a5582932214a.jpg", class: "w-24 h-24 rounded-full border-gray-400" %>
       </div class="">
       <div class="text-base font-bold text-gray-600 text-center py-4">Ketchum</div>
-      <div class="text-base font-bold text-gray-600 text-center pt-6">$ 6669.30</div>
+      <div class="text-base font-bold text-gray-600 text-center pt-6">$ <%= current_user.balance.amount %></div>
       <div class=" text-sm text-gray-400 text-center">BALANCE</div>
       <div class="text-base font-bold text-gray-600 text-center pt-6"><%= Item.all.length%></div>
       <div class="text-sm text-gray-400 text-center">ITEM</div>
