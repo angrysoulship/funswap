@@ -1,28 +1,11 @@
 
-<%= simple_form_for [ @item ] do |f| %>
-        <%= "You sure want to buy this item?" %>
-        <%= f.button :submit %>
-        <%= link_to 'Back', item_path(@item) %>
-<% end %>
+<div class="relative w-full grid">
+  <div class="absolute top-14 left-20 font-sans text-gray-600 font-medium">
+    <%= link_to "< Back ", collections_path%>
+  <div>
 
-
-<div class="w-screen">
-  <div class="card w-3/5 h-96">
-
-  <div class="item-info flex flex-col w-3/5 bg-gray-200">
-    <div class="info-text flex flex-col">
-      <div class="id bg-green-500 text-white text-xs rounded-xl px-3 h-4">item-id</div>
-      <div>NAME <%= @item.name %></div>
-      <div>TYPE <%= @item.species %></div>
-    </div>
-    <div class="item-image">img-url</div>
+  <div>
+    <%= link_to " Buy > ",  collection_item_transactions_path(@collection_id, @item), method: :post %>
   </div>
+<div>
 
-  <div class="checkout-box flex flex-col 2-2/5 bg-green-500 text-white">
-    <div class="cart-title"></div>
-    <div class="checkout-details"></div>
-    <div class="checkout-btns"></div>
-  </div>
-
-</div>
-</div>
