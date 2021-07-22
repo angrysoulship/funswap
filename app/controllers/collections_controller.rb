@@ -1,6 +1,8 @@
 class CollectionsController < ApplicationController
   def index
+    @transactions = policy_scope(Transaction)
     @collections = policy_scope(Collection)
+    @items = policy_scope(Item)
   end
 
   def new
@@ -17,7 +19,9 @@ class CollectionsController < ApplicationController
   end
 
   def show
+    @transactions = policy_scope(Transaction)
     @collection = Collection.find(params[:id])
+    @items = policy_scope(Item)
     authorize @collection
   end
 
