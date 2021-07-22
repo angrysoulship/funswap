@@ -32,12 +32,11 @@ class TransactionsController < ApplicationController
     @item.collection_id = current_user.collections[0].id
     @item.save
 
-    #存item, buyer, seller的id
+    #存item, buyer, seller的id, 交易保存
     
     @transaction.update(item_id: @item.id, buyer_id: current_user.id, seller_id: @seller_id)
     
-    #交易保存
-    @transaction.save
+  
     authorize @transaction
     redirect_to item_path(@item)
 

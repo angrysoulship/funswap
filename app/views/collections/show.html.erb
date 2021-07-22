@@ -81,21 +81,17 @@
           <div>Time</div>
         </div>
 
+     <% @transactions.each do |transaction| %>
         <div class="table-info grid grid-cols-5 gap-4 mx-4 mt-4 font-medium text-sm text-gray-500 bg-gray-100">
-          <div>item_id</div>
-          <div>user_id</div>
-          <div>buyer_id</div>
-          <div>price</div>
-          <div>created_at time</div>
+          <div><%= @item = Item.find(transaction.item.id).name %></div>
+          <div><%= @email = User.find(transaction.seller_id).email %></div>
+          <div><%= @email = User.find(transaction.buyer_id).email %></div>
+          <div><%= transaction.item.price %></div>
+          <div><%= transaction.created_at %></div>
         </div>
+      <% end %>
 
-        <div class="table-info grid grid-cols-5 gap-4 mx-4 mt-4 font-medium text-sm text-gray-500 bg-gray-100">
-          <div>item_id</div>
-          <div>user_id</div>
-          <div>buyer_id</div>
-          <div>price</div>
-          <div>created_at time</div>
-        </div>
+      
 
 
       </div>
