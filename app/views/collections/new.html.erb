@@ -1,31 +1,38 @@
-<%# form box %>
-<div class="grid bg-white rounded-lg shadow-xl w-1/2 m-auto ">
+<div class="relative mt-5">
 
-  <div class="flex justify-center py-4">
-    <div class="flex bg-purple-200 rounded-full p-2 border-2 border-purple-300">
-      <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+  <div class="absolute top-5 left-60 font-sans text-gray-600 font-medium">
+    <%= link_to "< Back ", collections_path, style:"text-decoration: none; color: inherit;"%>
+  </div>
+
+  <%# form box %>
+  <div class="grid bg-white rounded-lg shadow-xl w-1/2 m-auto ">
+
+    <div class="flex justify-center py-4">
+      <div class="flex bg-gray-200 rounded-full p-2 border-2 border-gray-300">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+      </div>
     </div>
-  </div>
 
-  <div class="flex justify-center">
-    <div class="flex">
-      <h1 class="text-gray-600 font-bold text-xl">New Collection</h1>
+    <div class="flex justify-center">
+      <div class="flex">
+        <h1 class="text-gray-600 font-bold text-xl">New Collection</h1>
+      </div>
     </div>
+
+    <%= simple_form_for(@collection) do |f| %>
+
+    <div class="grid grid-cols-1 mt-5 mx-7">
+
+      <label class="uppercase text-xs text-gray-500 font-semibold">Collection name</label>
+      <%= f.input :name, label: '', input_html: { class: ' w-full py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent'}%>
+    </div>
+
+
+    <div class="grid grid-cols-1 pt-5 pb-5 px-72">
+      <%= f.button :submit, "Create", class: "bg-gray-500 hover:bg-gray-700 rounded-lg shadow-xl text-center font-medium text-white px-4 py-2" %>
+    </div>
+    <% end %>
+
   </div>
-
-  <%= simple_form_for(@collection) do |f| %>
-
-  <div class="grid grid-cols-1 mt-5 mx-7">
-
-    <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Collection name</label>
-    <%= f.input :name, label: '', input_html: { class: ' w-full py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}%>
-  </div>
-
-
-  <div class="grid grid-cols-1 pt-5 pb-5 px-80">
-    <%= f.button :submit, "Create", class: "bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-2" %>
-  </div>
-  <% end %>
 
 </div>
-

@@ -1,4 +1,4 @@
-<div class="container flex justify-between w-screen mx-0 pl-0">
+<div class="flex justify-between w-screen mx-0 pl-0">
 
   <div class="profile-box shadow-sm h-screen flex flex-col content-center font-sans w-1/6 bg-gray-100">
     <div class="flex flex-col m-auto">
@@ -19,52 +19,74 @@
       <div class="text-sm text-gray-400 text-center">ITEM</div>
       <div class="text-base font-bold text-gray-600 text-center pt-6">2</div>
       <div class="text-sm text-gray-400 text-center">transaction</div>
-      <div class="pt-8">
-        <%= link_to "Create", new_collection_item_path(1), class: "bg-green-500 hover:bg-green-700 rounded-xl shadow-xl font-medium text-white px-4 py-2" %>
-      </div>
     </div>
 
   </div>
 
   <div class="show-box w-5/6 pl-4">
-    <div class="items mt-4">
-      <div class="text-gray-500 font-bold text-xl mx-4">Check out all your items</div>
+    <div class="items mt-4 mx-4">
+      <div class=" flex justify-between">
+        <div class="text-gray-500 font-bold text-xl mx-4">Collections</div>
+        <div class="add-btn text-green-500 font-bold texl-2xl"><%= link_to "+ new collection", new_collection_path, style:"text-decoration: none; color: inherit;"%></div>
+      </div>
 
-      <div class="item-cards grid grid-cols-3 gap-4 px-4 justify-items-center mb-6">
-        <% @collections.first.items.each do |item|%>
-        <div>
-          <%= link_to item_path(item), style:"text-decoration: none; color: inherit;" do %>
-          <div class="card relative w-64 h-80 bg-white rounded-2xl m-2 font-sans">
-            <div class="favourite-btn absolute top-3 right-3">
-              <p>&hearts;<p>
-            </div>
-            <div class="item w-full flex flex-col justify-between content-between h-full m-auto">
-              <div class="item-image w-44 h-44 justify-self-center m-auto">
-                <img class="object-cover w-full h-full rounded" src="<%= item.img_url %>" alt="">
-              </div>
+      <%# cards %>
+      <div class="list-cards grid grid-cols-4 gap-4 p-10">
 
-              <div class="item-info flex justify-between mx-4 text-sm">
-                <div class="id bg-green-500 text-white text-xs rounded-xl px-3 h-4">#434<%= item.id %></div>
-                <div class="name flex flex-col ">
-                  <div>NAME <%= item.name %></div>
-                  <div>TYPE <%= item.species %></div>
+        <% Collection.all.each do |collection| %>
+          <div class="grid">
+            <%= link_to collection_path(collection) do%>
+              <div class="list-card relative flex align-between justify-self-center bg-gradient-to-br from-green-400 to-green-500 hover:bg-green-700 w-52 h-52 rounded-3xl">
+                <div class="absolute  inset-x-0 bottom-2 px-4">
+                  <p class="list-id m-3 text-3xl font-sans text-gray-200">#</p>
+                  <p class="m-3 font-sans text-gray-200 text-xl font-extralight"><%=collection.name %></p>
+                </div>
+                <div class="font-sans text-gray-200 text-xl font-thin object-right absolute top-4 right-5">
+                  <%= link_to 'x', collection_path(collection), method: :delete %>
+                </div>
+                <div class="edit-btn absolute top-4 left-5">
+                  <%= link_to edit_collection_path(collection) do %>
+                    <i class="far fa-edit text-gray-200"></i>
+                  <% end %>
                 </div>
               </div>
-
-              <div class="item-record flex justify-around h-8 mx-3 my-2">
-                <div class="text-sm text-gray-400">2 hours ago</div>
-                <div class="">$<%= item.price %></div>
-              </div>
-            </div>
+            <% end %>
           </div>
-          <% end %>
-        </div>
         <% end %>
+
       </div>
     </div>
 
-    <div class="transactions">
+    <%# transaction history %>
+    <div class="transactions flex flex-col w-full">
       <div class="text-gray-500 font-bold text-xl mx-4">Transaction History</div>
+      <div class="table font-sans p-4 text-center rounded-xl border-green-500 border-solid w-11/12">
+        <div class="table-name grid grid-cols-5 gap-4 mx-4 mt-4 font-bold text-base text-green-500">
+          <div>Item ID</div>
+          <div>FROM</div>
+          <div>TO</div>
+          <div>Price</div>
+          <div>Time</div>
+        </div>
+
+        <div class="table-info grid grid-cols-5 gap-4 mx-4 mt-4 font-medium text-sm text-gray-500 bg-gray-100">
+          <div>item_id</div>
+          <div>user_id</div>
+          <div>buyer_id</div>
+          <div>price</div>
+          <div>created_at time</div>
+        </div>
+
+        <div class="table-info grid grid-cols-5 gap-4 mx-4 mt-4 font-medium text-sm text-gray-500 bg-gray-100">
+          <div>item_id</div>
+          <div>user_id</div>
+          <div>buyer_id</div>
+          <div>price</div>
+          <div>created_at time</div>
+        </div>
+
+
+      </div>
     </div>
   </div>
 
