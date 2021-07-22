@@ -12,7 +12,7 @@ class ItemsController < ApplicationController
     @item.collection = @collection
     @item.save
     authorize @item
-    redirect_to collections_path
+    redirect_to collection_path(@collection)
   end
 
   def show
@@ -36,7 +36,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @collection = @item.collection
     @item.destroy
-    redirect_to collections_path
+    redirect_to collection_path(@collection.id)
     authorize @item
   end
 
