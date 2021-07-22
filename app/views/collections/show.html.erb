@@ -1,20 +1,27 @@
 
-<div class="container flex justify-between w-screen mx-0 pl-0">
+<div class=" flex justify-between w-screen mx-0 pl-0">
 
   <div class="profile-box shadow-sm h-screen flex flex-col content-center font-sans w-1/6 bg-gray-100">
     <div class="flex flex-col m-auto">
-      <div class="py-4">
+      <div class="pb-4">
         <%= image_tag "https://i.pinimg.com/564x/51/07/75/510775920002ed607ff0a5582932214a.jpg", class: "w-24 h-24 rounded-full border-gray-400" %>
       </div class="">
-      <div class="text-base font-bold text-gray-600 text-center py-4">Ketchum</div>
-      <div class="text-base font-bold text-gray-600 text-center pt-6">$ 6669.30</div>
-      <div class=" text-sm text-gray-400 text-center">BALANCE</div>
+      <div class="text-base font-bold text-gray-600 text-center pb-4">Ketchum</div>
       <div class="text-base font-bold text-gray-600 text-center pt-6"><%= Item.all.length%></div>
-      <div class="text-sm text-gray-400 text-center">ITEM</div>
+      <div class="text-sm text-gray-400 text-center pb-6">ITEM</div>
       <div class="text-base font-bold text-gray-600 text-center pt-6">2</div>
-      <div class="text-sm text-gray-400 text-center">transaction</div>
-      <div class="pt-8">
-        <%= link_to "Create", new_collection_item_path(@collection), class: "bg-green-500 hover:bg-green-700 rounded-xl shadow-xl font-medium text-white px-4 py-2" %>
+      <div class="text-sm text-gray-400 text-center pb-6">TRANSACTION</div>
+      <% if current_user.balance.nil? %>
+        <div class="pt-8">
+        <%= link_to "Airdrop", balances_path, method: :post, class: "bg-green-500 hover:bg-green-700 rounded-xl shadow-xl font-medium text-white px-4 py-2" %>
+        </div>
+      <% else  %>
+        <div class="text-base font-bold text-gray-600 text-center pt-6 mb-1">$ <%= current_user.balance.amount %></div>
+        <div class=" text-sm text-gray-400 text-center mb-1">BALANCE</div>
+        <%= link_to "Top Up", edit_balance_path(current_user.balance.id), class: "bg-gray-400 hover:bg-gray-500 text-sm rounded-xl shadow-xl font-medium text-center text-white px-3 py-1", style:"text-decoration: none;"%>
+      <% end %>
+      <div class="mt-8">
+        <%= link_to "Create", new_collection_item_path(@collection), class: "bg-green-500 hover:bg-green-700 text-sm rounded-xl shadow-xl font-medium text-white px-4 py-2 text-center", style:"text-decoration: none;" %>
       </div>
     </div>
 
@@ -62,8 +69,36 @@
       </div>
     </div>
 
-    <div class="transactions">
+    <%# transaction history %>
+    <div class="transactions flex flex-col w-full">
       <div class="text-gray-500 font-bold text-xl mx-4">Transaction History</div>
+      <div class="table font-sans p-4 text-center rounded-xl border-green-500 border-solid w-11/12">
+        <div class="table-name grid grid-cols-5 gap-4 mx-4 mt-4 font-bold text-base text-green-500">
+          <div>Item ID</div>
+          <div>FROM</div>
+          <div>TO</div>
+          <div>Price</div>
+          <div>Time</div>
+        </div>
+
+        <div class="table-info grid grid-cols-5 gap-4 mx-4 mt-4 font-medium text-sm text-gray-500 bg-gray-100">
+          <div>item_id</div>
+          <div>user_id</div>
+          <div>buyer_id</div>
+          <div>price</div>
+          <div>created_at time</div>
+        </div>
+
+        <div class="table-info grid grid-cols-5 gap-4 mx-4 mt-4 font-medium text-sm text-gray-500 bg-gray-100">
+          <div>item_id</div>
+          <div>user_id</div>
+          <div>buyer_id</div>
+          <div>price</div>
+          <div>created_at time</div>
+        </div>
+
+
+      </div>
     </div>
   </div>
 
