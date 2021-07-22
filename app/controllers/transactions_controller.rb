@@ -11,41 +11,49 @@ class TransactionsController < ApplicationController
   end
 
   def create
+
+    #找到交易物品，创立新的交易
     @item = Item.find(params[:item_id])
     @buyer_id = current_user.id
-
     @transaction = Transaction.new( item_id: @item.id, buyer_id: @buyer_id)
 
-    # @transaction.item = @item
-    # @seller_collection = Collection.find(@transaction.item.collection_id)
-
-    #change item collection from seller_collection, to buyer_collection
-
+    # 换buyer的balance，也就是current_user balance
+    @balance = Balance.find(@buyer_id)
+    @balance.amount -= @transaction.item.price
+    @balance.update(amount: @balance.amount)
+    
+    #换seller的bal1ance
+    @seller_id = @item.collection.user.id
+    @balance1 = Balance.find(@seller_id)
+    @balance1.amount += @transaction.item.price
+    @balance1.update(amount: @balance1.amount)
+   
+    #物品进行置换
     @item.collection_id = current_user.collections[0].id
+    @item.save
 
-
-
-    # @seller = User.find(@seller_collection.user_id)
-    # @buyer = User.find(@buyer_id)
-
-    @seller_id = @transaction.item.collection.user.id
-    # @transaction.buyer_id = current_user.id
-    @seller = User.find(@seller_id)
-
-    @seller.balance.amount += @transaction.item.price
-
-    @buyer = current_user
-    @buyer.balance.amount -= @transaction.item.price
+    #存item, buyer, seller的id
+    
+    @transaction.update(item_id: @item.id, buyer_id: current_user.id, seller_id: @seller_id)
+    
+    #交易保存
     @transaction.save
     authorize @transaction
     redirect_to item_path(@item)
 
   end
 
+  def update
+    @transaction = Transaction.find(params[:id])
+    @transaction.update(transaction_params)
+    authorize @transaction
+    redirect_to collections_path
+  end
+
 private
 
   def transaction_params
-    params.require(:transaction).permit(:item_id, :buyer_id)
+    params.require(:transaction).permit(:item_id, :buyer_id, :seller_id)
   end
 
 end
