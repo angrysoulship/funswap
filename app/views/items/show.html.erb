@@ -27,17 +27,20 @@
           <div class="price w-32 h-10 bg-white flex">
             <p class="self-center text-gray-700 text-xl">$ <%= @item.price %></p>
           </div>
+
+
           <% @collection = Collection.find(@item.collection_id) %>
           <% if @collection.user_id == current_user.id %>
             <div>
             </div>
           <% else %>
-            <div class="action w-32 h-10 bg-green-500 rounded-xl flex justify-center">
-              <p class="self-center text-white text-lg">Buy</p>
+            <div class="pt-8">
+            <%= link_to "Buy", new_collection_item_transaction_path(@item.collection_id, @item.id), class: "bg-green-500 hover:bg-green-700 rounded-xl shadow-xl font-medium text-white px-4 py-2" %>
             </div>
           <% end %>
+
         </div>
-      
+
         <div class="date content-end text-gray-400 mt-2">
           <p>1 day ago</p>
         </div>
@@ -69,7 +72,7 @@
           </div>
 
           <div class="text-gray-700">
-            <%= link_to "Delete", item_path(@item), method: :delete %>  
+            <%= link_to "Delete", item_path(@item), method: :delete %>
           </div>
         <% else %>
           <div></div>
@@ -80,4 +83,3 @@
   </div>
 
  </div>
-

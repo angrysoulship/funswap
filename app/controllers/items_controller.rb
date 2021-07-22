@@ -29,6 +29,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @item.update(item_params)
     authorize @item
+    raise
     redirect_to item_path(@item)
   end
 
