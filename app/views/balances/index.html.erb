@@ -1,0 +1,9 @@
+<h1>hiiii</h1>
+
+<h1><%= @balance.id %></h1>
+<h1><%= @balance.amount %></h1>
+<h1><%= @balance.user.email %></h1>
+
+<%= link_to "Give me some airdrops(update)", balances_path, method: :post  %>
+
+<%= link_to "Top Up", edit_balance_path(@balance) %>
