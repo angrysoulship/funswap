@@ -1,11 +1,56 @@
+<div class="relative mt-5 ">
 
-<div class="relative w-full grid">
-  <div class="absolute top-14 left-20 font-sans text-gray-600 font-medium">
-    <%= link_to "< Back ", collections_path%>
-  <div>
-
-  <div>
-    <%= link_to " Buy > ",  collection_item_transactions_path(@collection_id, @item), method: :post %>
+  <div class="absolute top-4 left-60 font-sans text-gray-600 font-medium">
+    <%= link_to "< Back ", collections_path, style:"text-decoration: none; color: inherit;"%>
   </div>
-<div>
+
+  <div class=" w-full h-full bg-transparent mt-20">
+
+    <div class="card w-2/5 h-3/5 flex flex-row m-auto border-none bg-transparent">
+
+      <div class="item-info flex flex-col justify-between w-3/5 bg-gray-100 shadow rounded-l-lg">
+        <div class="info-text flex flex-col justify-between pt-4 pl-4">
+          <div class="id bg-green-500 text-white text-xs rounded-xl px-3 h-4 w-20">#434<%= @item.id %></div>
+          <div class="flex mt-2 ">
+            <div class="text-gray-500 ">NAME </div>
+            <div class="text-green-500 pl-2"><%= @item.name %></div>
+          </div>
+          <div class="flex mt-2 ">
+            <div class="text-gray-500 ">TYPE </div>
+            <div class="text-green-500 pl-2"><%= @item.species %></div>
+          </div>
+        </div>
+        <div class="item-image self-center w-44 h-44 mb-10">
+          <img class="object-cover w-full h-full rounded" src="<%= @item.img_url %>" alt="">
+        </div>
+      </div>
+
+      <div class="checkout-box flex flex-col justify-between w-2/5 bg-green-500 text-white shadow rounded-r-lg">
+        <div class="cart-title text-white font-sans font-medium text-xl px-2 pt-3">CART</div>
+        <div class="checkout-details h-3/5 pt-32">
+          <div>
+            <div class="flex justify-between mt-2 text-gray-100 items-center px-2">
+              <div class="text-xs">CURRENT BALANCE </div>
+              <div class="pl-2 text-xs">$ <%= current_user.balance.amount %></div>
+            </div>
+            <div class="flex justify-between my-2 text-gray-100 items-center px-2">
+              <div class="text-xs">SUBTOTAL </div>
+              <div class="pl-2 text-xs">$ <%= @item.price %></div>
+            </div>
+            <hr style="width:100%", size="2", color=white>
+          </div>
+        </div>
+
+        <div class="checkout-btns flex flex-col pl-28 pt-10">
+          <%= link_to "Top Up", edit_balance_path(current_user.balance.id), class: "bg-gray-400 hover:bg-gray-500 text-xs rounded-xl shadow-xl font-medium text-center text-white py-1 w-24", style:"text-decoration: none;"%>
+          <div class="bg-gray-100 hover:bg-gray-300 text-xs rounded-xl shadow-xl font-medium text-center text-green-500 py-1 w-24 my-2", style="text-decoration: none;">
+            <%= link_to " CHECKOUT > ",  collection_item_transactions_path(@collection_id, @item), method: :post %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  </div>
 
