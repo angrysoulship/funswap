@@ -21,7 +21,24 @@ class CollectionsController < ApplicationController
     authorize @collection
   end
 
+  def edit
+    @collection = Collection.find(params[:id])
+    authorize @collection
+  end
 
+  def update
+    @collection = Collection.find(params[:id])
+    @collection.update(collection_params)
+    authorize @collection
+    redirect_to collection_path(@collection)
+  end
+
+  def destroy
+    @collection = Collection.find(params[:id])
+    @collection.destroy
+    authorize @collection
+    redirect_to collections_path, notice: 'Collection is deleted.'
+  end
 
   private
 
