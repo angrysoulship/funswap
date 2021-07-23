@@ -2,7 +2,7 @@
 
   <div class="profile-box shadow-sm h-screen flex flex-col content-center font-sans w-1/6 bg-gray-100">
     <div class="flex flex-col m-auto">
-      <div class="pb-4">
+      <div class="pb-4 self-center">
         <%= image_tag "https://i.pinimg.com/564x/51/07/75/510775920002ed607ff0a5582932214a.jpg", class: "w-24 h-24 rounded-full border-gray-400" %>
       </div class="">
       <div class="text-base font-medium text-gray-600 text-center pb-4"><%= current_user.email %></div>
@@ -25,7 +25,7 @@
   </div>
 
   <div class="show-box w-5/6 pl-4">
-    <div class="items mt-4 mx-4">
+    <div class="collections m-4">
       <div class=" flex justify-between">
         <div class="text-gray-500 font-bold text-xl mx-4">Collections</div>
         <div class="add-btn text-green-500 font-bold texl-2xl"><%= link_to "+ new collection", new_collection_path, style:"text-decoration: none; color: inherit;"%></div>
@@ -59,7 +59,7 @@
     </div>
 
     <%# transaction history %>
-    <div class="transactions flex flex-col w-full">
+    <div class="transactions flex flex-col w-full m-4">
       <div class="text-gray-500 font-bold text-xl mx-4">Transaction History</div>
       <div class="table font-sans p-4 text-center rounded-xl border-green-500 border-solid w-11/12">
         <div class="table-name grid grid-cols-5 gap-4 mx-4 mt-4 font-bold text-base text-green-500">
