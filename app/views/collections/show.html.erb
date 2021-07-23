@@ -7,10 +7,24 @@
         <%= image_tag "https://i.pinimg.com/564x/51/07/75/510775920002ed607ff0a5582932214a.jpg", class: "w-24 h-24 rounded-full border-gray-400" %>
       </div class="">
       <div class="text-base font-medium text-gray-600 text-center pb-4"><%= current_user.email %></div>
-      <div class="text-base font-bold text-gray-600 text-center pt-6"><%= Item.all.length%></div>
-      <div class="text-sm text-gray-400 text-center pb-6">ITEM</div>
-      <div class="text-base font-bold text-gray-600 text-center pt-6"><%= Transaction.all.length%></div>
-      <div class="text-sm text-gray-400 text-center pb-6">TRANSACTION</div>
+
+      <div class="text-base font-bold text-gray-600 text-center pt-6">
+        <% @counter = 0 %>
+        <% @items.each do |item| %>
+          <% @counter += 1 if User.find(Collection.find(item.collection_id).user_id) == current_user %>
+        <% end %>
+        <%= @counter %>
+      </div>
+      <div class="text-sm text-gray-400 text-center pb-6">ITEMS</div>
+      <div class="text-base font-bold text-gray-600 text-center pt-6">
+        <% @transaction_counter = 0 %>
+        <% @transactions.each do |transaction| %>
+          <% @transaction_counter += 1 if current_user == User.find(transaction.seller_id) || current_user == User.find(transaction.buyer_id) %>
+        <% end %>
+        <%= @transaction_counter %>
+      </div>
+      <div class="text-sm text-gray-400 text-center pb-6">TRANSACTIONS</div>
+
       <% if current_user.balance.nil? %>
         <div class="pt-8">
         <%= link_to "Airdrop", balances_path, method: :post, class: "bg-green-500 hover:bg-green-700 rounded-xl shadow-xl font-medium text-white px-4 py-2" %>
