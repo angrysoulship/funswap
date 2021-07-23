@@ -7,14 +7,15 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-# Transaction.destroy_all
-# Item.destroy_all
-# Collection.destroy_all
-
+Transaction.destroy_all
+Item.destroy_all
+Collection.destroy_all
+Balance.destroy_all
+User.destroy_all
 
 # Collection.create(name: "Young Pokemons!", user_id: 8)
 # Collection.create(name: "Grown-ups!", user_id: 9)
-Collection.create(name: "Grown-ups!", user_id: 1)
+# Collection.create(name: "Grown-ups!", user_id: 1)
 
 # # For collection 25
 
