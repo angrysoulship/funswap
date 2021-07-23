@@ -32,7 +32,7 @@
 
           <% @collection = Collection.find(@item.collection_id) %>
           <% if @collection.user_id == current_user.id %>
-            <div>
+            <div class="bg-green-500 hover:bg-green-700 rounded-xl shadow-xl font-medium text-white px-4 py-2">Your Item
             </div>
           <% else %>
             <div class="pt-8">
@@ -56,12 +56,12 @@
 
       <div class="description flex flex-col w-1/2 h-full mx-4 my-3">
         <div class="name h-10 bg-white flex">
-          <p class="self-center text-gray-500 text-base mr-10">NAME</p>
+          <p class="self-center text-gray-500 text-base mr-10">Name</p>
           <span class="text-green-500 self-center"><%= @item.name %></span>
         </div>
 
         <div class="type h-10 bg-white flex">
-          <p class="self-center text-gray-500 text-base mr-10">TYPE</p>
+          <p class="self-center text-gray-500 text-base mr-10">Type</p>
           <span class="text-green-500 self-center"><%= @item.species %></span>
         </div>
 
@@ -106,8 +106,8 @@
       </div>
 
   <% @transactions.each do |transaction| %>
-      <div class="table-info grid grid-cols-5 gap-4 mx-4 mt-4 font-medium text-sm text-gray-500 bg-gray-100">
-        <% if transaction.item.id = params[:id]  %>
+      <div class="table-info grid grid-cols-5 gap-4 mx-2 mt-4 font-medium text-sm text-gray-500 bg-gray-100">
+        <% if transaction.item.id == params[:id].to_i  %>
           <div><%= @item_name = Item.find(transaction.item.id).name %></div>
           <div><%= @email = User.find(transaction.seller_id).email %></div>
           <div><%= @email = User.find(transaction.buyer_id).email %></div>
