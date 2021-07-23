@@ -23,9 +23,9 @@ class TransactionsController < ApplicationController
     @balance.update(amount: @balance.amount)
     
     #换seller的bal1ance
-    @seller_id = @item.collection.user.id
+    @seller_id = @item.collection.user_id
     @balance1 = Balance.find(@seller_id)
-    @balance1.amount += @transaction.item.price
+    @balance1.amount = @balance1.amount + @transaction.item.price
     @balance1.update(amount: @balance1.amount)
    
     #物品进行置换
@@ -34,8 +34,8 @@ class TransactionsController < ApplicationController
 
     #存item, buyer, seller的id, 交易保存
     
-    @transaction.update(item_id: @item.id, buyer_id: current_user.id, seller_id: @seller_id)
-    
+    @transaction.seller_id = @seller_id
+    @transaction.save
   
     authorize @transaction
     redirect_to item_path(@item)

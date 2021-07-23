@@ -16,6 +16,9 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @transactions = policy_scope(Transaction)
+    @collections = policy_scope(Collection)
+    @items = policy_scope(Item)
     @item = Item.find(params[:id])
     authorize @item
   end
