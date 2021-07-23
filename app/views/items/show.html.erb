@@ -1,33 +1,34 @@
-<div class=" relative w-screen h-screen flex justify-center">
-  <div class="absolute top-14 left-20 font-sans text-gray-600 font-medium">
+<div class=" relative w-full h-full flex flex-col align-center m-auto">
+  <div class="absolute top-14 left-24 font-sans text-gray-600 font-medium">
   <%= link_to "< Back ", collection_path(@item.collection_id)%>
   </div>
-  <div class="card w-4/6 h-5/6 shadow-lg self-center justify-center">
 
-    <div class="item-info w-11/12 h-40 flex self-center justify-center mb-3">
+  <div class="card mt-4 w-4/6 h-5/6 shadow-sm self-center rounded-xl">
 
-      <div class="item-name-type w-2/5 h-32 mx-3 my-2">
+    <div class="item-info w-full h-20 flex self-center justify-center mt-6">
 
-        <div class="id w-32 h-10 bg-green-500 rounded-xl flex justify-center ">
+      <div class="item-name-type w-2/5 h-32 mx-3 my-2 flex justify-between">
+        <div class="id w-28 h-8 bg-green-500 rounded-xl flex justify-center ">
           <p class="self-center text-white">#434<%= @item.id  %></p>
         </div>
 
-        <div class="name w-40 h-10 bg-white flex mt-3">
-          <p class="self-center text-gray-700 text-lg">Name: <%= @item.name %></p>
-        </div>
-
-        <div class="type w-32 h-10 bg-white flex">
-          <p class="self-center text-gray-700 text-lg">Type: <%= @item.species %></p>
+        <div class="owner-email mr-3 text-sm text-gray-500">
+          <div>Owner</div>
+          <div>
+            <%= User.find(Collection.find(@item.collection_id).user_id).email %>
+          </div>
         </div>
 
       </div>
 
-      <div class="item-price w-2/5 h-32 my-2 ml-12">
+      <div class="item-price w-2/5 h-32 my-2 ml-4">
         <div class="w-full h-1/3 flex justify-between " >
           <div class="price w-32 h-10 bg-white flex">
-            <p class="self-center text-gray-700 text-xl">$ <%= @item.price %></p>
+            <div class="self-center text-xl">
+              <i class="fab fa-ethereum text-gray-500"></i>
+              <span class="text-gray-700"><%= @item.price %></span>
+            </div>
           </div>
-
 
           <% @collection = Collection.find(@item.collection_id) %>
           <% if @collection.user_id == current_user.id %>
@@ -35,82 +36,88 @@
             </div>
           <% else %>
             <div class="pt-8">
-            <%= link_to "Buy", new_collection_item_transaction_path(@item.collection_id, @item.id), class: "bg-green-500 hover:bg-green-700 rounded-xl shadow-xl font-medium text-white px-4 py-2" %>
+            <%= link_to "Buy", new_collection_item_transaction_path(@item.collection_id, @item.id), class: "bg-green-500 hover:bg-green-700 rounded-xl shadow font-medium text-white px-4 py-2" %>
             </div>
           <% end %>
-    
         </div>
 
-        <div class="date content-end text-gray-400 mt-2">
-          <p>1 day ago</p>
+        <div class="date content-end text-gray-400">
+          <p><%= @item.created_at %></p>
         </div>
 
       </div>
-
     </div>
 
-    <div class="item-detail w-11/12 h-96 flex self-center justify-center">
+    <div class="item-detail w-11/12 h-4/5 flex self-center justify-center mb-6">
 
-      <div class="img w-3/6 h-96 mx-4 my-3 flex justify-center">
-        <img class="rounded-3xl shadow-lg object-cover h-full self-center" src="<%= @item.img_url %>" alt="">
+      <div class="img w-1/2 h-full mx-4 my-3 flex justify-center">
+        <img class="rounded-3xl shadow-lg object-cover p-2 h-full self-center" src="<%= @item.img_url %>" alt="">
       </div>
 
-      <div class="description w-96 h-80 mx-4 my-3 m">
-
-        <div class="about w-32 h-10 bg-white flex">
-          <p class="self-center text-gray-700 text-xl ">About</p>
+      <div class="description flex flex-col w-1/2 h-full mx-4 my-3">
+        <div class="name h-10 bg-white flex">
+          <p class="self-center text-gray-500 text-base mr-10">NAME</p>
+          <span class="text-green-500 self-center"><%= @item.name %></span>
         </div>
 
-        <div class="description-text text-gray-700 w-80 h-64 bg-white mt-4 mx-2.5 mt-1">
-          <p><%= @item.description %></p>
+        <div class="type h-10 bg-white flex">
+          <p class="self-center text-gray-500 text-base mr-10">TYPE</p>
+          <span class="text-green-500 self-center"><%= @item.species %></span>
         </div>
 
-        <% @collection = Collection.find(@item.collection_id) %>
-        <% if @collection.user_id == current_user.id %>
-          <div class="text-gray-700">
-            <%= link_to "Edit", edit_item_path(@item)%>
-          </div>
+        <div class="about bg-white flex mt-2">
+          <p class="self-center text-gray-500 text-xl">About</p>
+        </div>
 
-          <div class="text-gray-700">
-            <%= link_to "Delete", item_path(@item), method: :delete %>
-          </div>
-        <% else %>
-          <div></div>
-        <% end %>
+        <div class="description-text border border-solid rounded-xl border-gray-300 text-gray-500 w-full h-48 my-2">
+          <p class="p-2"><%= @item.description %></p>
+        </div>
+
+        <div class="btns mt-3">
+           <% @collection = Collection.find(@item.collection_id) %>
+            <% if @collection.user_id == current_user.id %>
+              <div class="text-gray-700">
+                <%= link_to "Edit", edit_item_path(@item)%>
+              </div>
+
+              <div class="text-gray-700">
+                <%= link_to "Delete", item_path(@item), method: :delete %>
+              </div>
+            <% else %>
+              <div></div>
+            <% end %>
+        </div>
 
       </div>
 
-      
+
     </div>
   </div>
-  
+
+  <div class="transactions w-4/6 flex flex-col mt-6 self-center">
+    <div class="text-gray-500 font-bold text-xl pt-4">Item's Transaction History</div>
+    <div class="table font-sans px-4 text-center rounded-xl border-green-500 border-solid w-11/12">
+      <div class="table-name grid grid-cols-5 gap-4 mx-4 mt-4 font-bold text-base text-green-500">
+        <div>Item ID</div>
+        <div>FROM</div>
+        <div>TO</div>
+        <div>Price</div>
+        <div>Time</div>
+      </div>
+
+  <% @transactions.each do |transaction| %>
+      <div class="table-info grid grid-cols-5 gap-4 mx-4 mt-4 font-medium text-sm text-gray-500 bg-gray-100">
+        <% if transaction.item.id = params[:id]  %>
+          <div><%= @item_name = Item.find(transaction.item.id).name %></div>
+          <div><%= @email = User.find(transaction.seller_id).email %></div>
+          <div><%= @email = User.find(transaction.buyer_id).email %></div>
+          <div><%= transaction.item.price %></div>
+          <div><%= transaction.created_at %></div>
+        <% end %>
+      </div>
+    <% end %>
+
+  </div>
+
  </div>
 
-<div class="transactions flex flex-col w-full">
-      <div class="text-gray-500 font-bold text-xl mx-4">Item's Transaction History</div>
-      <div class="table font-sans p-4 text-center rounded-xl border-green-500 border-solid w-11/12">
-        <div class="table-name grid grid-cols-5 gap-4 mx-4 mt-4 font-bold text-base text-green-500">
-          <div>Item ID</div>
-          <div>FROM</div>
-          <div>TO</div>
-          <div>Price</div>
-          <div>Time</div>
-        </div>
-
-     <% @transactions.each do |transaction| %>
-        <div class="table-info grid grid-cols-5 gap-4 mx-4 mt-4 font-medium text-sm text-gray-500 bg-gray-100">
-          <% if transaction.item.id = params[:id]  %>
-            <div><%= @item_name = Item.find(transaction.item.id).name %></div>
-            <div><%= @email = User.find(transaction.seller_id).email %></div>
-            <div><%= @email = User.find(transaction.buyer_id).email %></div>
-            <div><%= transaction.item.price %></div>
-            <div><%= transaction.created_at %></div>
-          <% end %>
-        </div>
-      <% end %>
-     
-
-      
-
-
-      </div>
