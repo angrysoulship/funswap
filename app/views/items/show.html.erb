@@ -31,7 +31,7 @@
 
           <% @collection = Collection.find(@item.collection_id) %>
           <% if @collection.user_id == current_user.id %>
-            <div>
+            <div class="bg-green-500 hover:bg-green-700 rounded-xl shadow-xl font-medium text-white px-4 py-2">NOW YOURS!
             </div>
           <% else %>
             <div class="pt-8">
