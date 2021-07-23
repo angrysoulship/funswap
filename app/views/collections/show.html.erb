@@ -30,7 +30,10 @@
         <%= link_to "Airdrop", balances_path, method: :post, class: "bg-green-500 hover:bg-green-700 rounded-xl shadow-xl font-medium text-white px-4 py-2" %>
         </div>
       <% else  %>
-        <div class="text-base font-bold text-gray-600 text-center pt-6 mb-1">$ <%= current_user.balance.amount %></div>
+        <div class="text-base font-bold text-gray-600 text-center pt-6 mb-1">
+          <i class="fab fa-ethereum text-gray-500"></i>
+          <%= current_user.balance.amount %>
+        </div>
         <div class=" text-sm text-gray-400 text-centermb-1 self-center">BALANCE</div>
         <div class="self-center">
           <%= link_to "Top Up", edit_balance_path(current_user.balance.id), class: "bg-gray-400 hover:bg-gray-500 text-sm rounded-xl shadow-xl font-medium text-center text-white px-4 py-1", style:"text-decoration: none;"%>
@@ -69,13 +72,15 @@
                 <div class="id bg-green-500 text-white text-xs rounded-xl px-3 h-4">#434<%= item.id %></div>
                 <div class="name flex flex-col ">
                   <div>NAME <%= item.name %></div>
-                  <div>TYPE <%= item.species %></div>
                 </div>
               </div>
 
               <div class="item-record flex justify-around h-8 mx-3 my-2">
-                <div class="text-sm text-gray-400"><%= item.created_at %></div>
-                <div class="">$<%= item.price %></div>
+                <div class="text-xs text-gray-400"><%= item.created_at %></div>
+                <div class=" text-xs">
+                  <i class="fab fa-ethereum text-gray-500"></i>
+                  <span><%= item.price %></span>
+                </div>
               </div>
             </div>
           </div>
