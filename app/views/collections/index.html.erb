@@ -29,7 +29,10 @@
         <%= link_to "Airdrop", balances_path, method: :post, class: "bg-green-500 hover:bg-green-700 rounded-xl shadow-xl font-medium text-white px-4 py-2" %>
         </div>
       <% else  %>
-        <div class="text-base font-bold text-gray-600 text-center pt-6 mb-1">$ <%= current_user.balance.amount %></div>
+        <div class="text-base font-bold text-gray-600 text-center pt-6 mb-1">
+        <i class="fab fa-ethereum text-gray-500"></i>
+        <%= current_user.balance.amount %>
+        </div>
         <div class=" text-sm text-gray-400 text-center mb-1">BALANCE</div>
         <%= link_to "Top Up", edit_balance_path(current_user.balance.id), class: "bg-gray-400 hover:bg-gray-500 text-sm rounded-xl shadow-xl font-medium text-center text-white px-3 py-1", style:"text-decoration: none;"%>
       <% end %>
@@ -100,8 +103,8 @@
             </div>
         <% end %>
       <% end %>
-      
-      
+
+
 
       </div>
     </div>
