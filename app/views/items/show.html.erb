@@ -106,15 +106,15 @@
       </div>
 
   <% @transactions.each do |transaction| %>
-      <div class="table-info grid grid-cols-5 gap-4 mx-2 mt-4 font-medium text-sm text-gray-500 bg-gray-100">
         <% if transaction.item.id == params[:id].to_i  %>
-          <div><%= @item_name = Item.find(transaction.item.id).name %></div>
-          <div><%= @email = User.find(transaction.seller_id).email %></div>
-          <div><%= @email = User.find(transaction.buyer_id).email %></div>
-          <div><%= transaction.item.price %></div>
-          <div><%= transaction.created_at %></div>
+          <div class="table-info grid grid-cols-5 gap-4 mx-2 mt-4 font-medium text-sm text-gray-500 bg-gray-100">
+            <div><%= @item_name = Item.find(transaction.item.id).name %></div>
+            <div><%= @email = User.find(transaction.seller_id).email %></div>
+            <div><%= @email = User.find(transaction.buyer_id).email %></div>
+            <div><%= transaction.item.price %></div>
+            <div><%= transaction.created_at %></div>
+          </div>        
         <% end %>
-      </div>
     <% end %>
 
   </div>
